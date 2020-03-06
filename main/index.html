@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="/jquery-3.4.1.min.js"></script>
+  <script src="/util.js" async></script>
+  <script src="/main/script.js" async></script>
+  <link rel="stylesheet" href="/main/style.css">
+  <link rel="stylesheet" href="/base.css">
+  <title>Repeatio</title>
+</head>
+<body class="blockTransionsOnStart">
+  <div id="preparation">
+    <div class="title">How many words do you want to repeat?</div>
+    <div class="controls">
+      <input id="numberOfWords" type="number" max="0" min="0">
+      <input id="startButton" type="button" value="Start">
+      <input class="goBackButton secondary" type="button" value="Go back">
+    </div>
+  </div>
+  <div id="game" style="display: none;">
+    <!--
+    <input type="checkbox" id="alwaysShowTranslation">
+    <label for="alwaysShowTranslation">Always show translation</label>
+    -->
+    <div class="wordsLeft"></div>
+    <div class="word"></div>
+    <div class="controls">
+      <input id="nextButton" type="button" value="Ok">
+      <!-- <input id="showTranslationButton" type="button" value="Translation"> -->
+      <input id="finishButton" class="secondary" type="button" value="Finish">
+    </div>
+    <div class="translation"></div>
+  </div>
+  <div id="endScreen" style="display: none;">
+    <div class="title">Congratz!</div>
+    <input class="goBackButton secondary" type="button" value="Go back">
+  </div>
+</body>
+</html>

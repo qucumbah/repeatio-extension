@@ -1,0 +1,54 @@
+body {
+  width: 400px;
+}
+
+#preparation .controls {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px;
+}
+
+#preparation #numberOfWords {
+  color: #04080c;
+  border-radius: 20px;
+  border: none;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 900;
+  padding: 0px 10px;
+  outline: none;
+}
+
+#game {
+  padding: 15px;
+}
+
+#game .wordsLeft {
+  color: #aaa;
+}
+
+#game .word {
+  margin: 20px 0;
+  font-size: 25px;
+  color: #fff;
+  text-align: center;
+}
+
+#game .controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+#game [type="button"] {
+  width: 100%;
+  margin: 0px 10px;
+}
+
+#endScreen {
+  padding: 15px;
+}
+
+#endScreen [type="button"] {
+  width: 70%;
+  margin: 10px auto;
+}

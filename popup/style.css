@@ -1,0 +1,39 @@
+body {
+  width: 200px;
+  padding: 20px;
+}
+
+[type="button"] {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#wordGroups {
+  margin-top: 10px;
+}
+#wordGroups .wordGroup {
+  position: relative;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.5s;
+  height: 24px; 
+  overflow: hidden;
+
+  /* These properties will be changed in js for cool unwrap effect */
+  padding: 1px 0px;
+  opacity: 0;
+}
+#wordGroups .wordGroup:nth-child(2n) {
+  background-color: #1a1a23;
+}
+#wordGroups .wordGroup:nth-child(2n + 1) {
+  background-color: #272729;
+}
+#wordGroups .wordGroup:first-child {
+  border-radius: 20px 20px 0 0;
+}
+#wordGroups .wordGroup:last-child {
+  border-radius: 0 0 20px 20px;
+}
