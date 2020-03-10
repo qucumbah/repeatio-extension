@@ -3,10 +3,10 @@ chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
 
   const wordGroupsDom = wordGroups.map((group, index) => {
     const wordGroup = $(
-      `<div class="wordGroup">
+      `<li class="wordGroup">
         <div class="groupName">${util.getGroupName(index)}</div>
         <div class="groupLength">${group.length}</div>
-      </div>`
+      </li>`
     );
     wordGroup.css({
       'transition-delay': index / 32 + 's',
@@ -14,7 +14,7 @@ chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
     return wordGroup;
   });
   container.append(wordGroupsDom);
-  
+
   setTimeout(() => {
     $('.wordGroup').css({
       'padding': '1px 15px',

@@ -25,6 +25,7 @@ body.blurred * {
   position: fixed;
   top: 0;
   left: 0;
+  cursor: pointer;
 }
 
 .loading {
@@ -44,7 +45,7 @@ body.blurred * {
 .controls {
   position: fixed;
   background-color: #09090c;
-  box-shadow: 0 1px 10px 0px #ffffffaa;
+  box-shadow: 0 1px 1px 0px #ffffffaa;
   display: flex;
   align-content: center;
 }
@@ -73,44 +74,19 @@ body.blurred * {
   text-transform: uppercase;
 }
 
-.list {
+.fullList {
   padding: 15px 60px;
 }
 
 .groupContainer {
   padding: 3px;
   border-radius: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }
 
 .groupName {
   font-weight: 800;
   text-align: center;
-}
-
-.wordContainer {
-  display: flex;
-  justify-content: space-between;
-  transition: 0.5s;
-
-  /* These properties will be changed in js for cool unwrap effect */
-  padding: 1px 0px;
-  opacity: 0;
-}
-.wordContainer:nth-child(2n) {
-  background-color: #1a1a23;
-}
-.wordContainer:nth-child(2n + 1) {
-  background-color: #272729;
-}
-.wordContainer:first-child {
-  border-radius: 20px 20px 0 0;
-}
-.wordContainer:last-child {
-  border-radius: 0 0 20px 20px;
-}
-.wordContainer:first-child:last-child {
-  border-radius: 20px 20px 20px 20px;
 }
 
 .removeWordButton {
@@ -132,7 +108,7 @@ body.blurred * {
   padding: 20px;
   border-radius: 20px;
   background-color: #09090c;
-  box-shadow: 0 0px 10px 0px #ffffffaa;
+  border: 2px solid white;
   transition: 0.5s;
   transition-property: opacity;
 }
@@ -144,6 +120,7 @@ body.blurred * {
 .popupControls {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 .popupControls * {
   width: 100%;

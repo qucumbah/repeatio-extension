@@ -20,17 +20,17 @@ const setLoading = (isLoading) => {
 
 const updateScreen = (wordGroups) => {
   if (wordGroups) {
-    $('.list').html( wordGroups.map(renderGroup) );
+    $('.fullList').html( wordGroups.map(renderGroup) );
   } else {
     setBlurred(true);
     setLoading(true);
     chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
-      $('.list').html( wordGroups.map(renderGroup) );
+      $('.fullList').html( wordGroups.map(renderGroup) );
       setBlurred(false);
       setLoading(false);
     });
   }
-  
+
   setTimeout(() => {
     $('.wordContainer').css({
       'padding': '1px 15px',
@@ -58,8 +58,6 @@ const showPopup = (text, yesAction) => {
   setBlurred(true);
 };
 
-$('.actionBlocker').click(hidePopup);
-
 const removeWord = (groupIndex, wordIndex) => {
   chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
     wordGroups[groupIndex].splice(wordIndex, 1);
@@ -69,9 +67,9 @@ const removeWord = (groupIndex, wordIndex) => {
 };
 
 const renderWord = (word, wordIndex, groupIndex) => {
-  const wordContainer = $('<div class="wordContainer"></div>');
+  const wordContainer = $('<li class="wordContainer"></li>');
   wordContainer.css('transition-delay', wordIndex / 32 + 's');
-  wordContainer.append( $('<div class="word">' + word + '<div>') );
+  wordContainer.append( $('<div class="word">' + word + '</div>') );
   const removeWordButton = $('<div class="removeWordButton">Remove</div>');
   removeWordButton.click(() => {
     showPopup(
@@ -87,7 +85,7 @@ const renderGroup = (group, groupIndex) => {
   if (group.length === 0) {
     return null;
   }
-  
+
   const groupContainer = $('<div class="groupContainer"></div>');
   groupContainer.append(
     $('<div class="groupName">' + util.getGroupName(groupIndex) + '</div>')
@@ -95,7 +93,7 @@ const renderGroup = (group, groupIndex) => {
   const groupContents = group.map(
     (word, wordIndex) => renderWord(word, wordIndex, groupIndex)
   );
-  const wordsContainer = $('<div class="wordsContainer"></div>');
+  const wordsContainer = $('<ul class="wordsContainer"></ul>');
   wordsContainer.append(groupContents);
   groupContainer.append(wordsContainer);
   return groupContainer;
@@ -103,4 +101,5 @@ const renderGroup = (group, groupIndex) => {
 
 updateScreen();
 
+$('.actionBlocker').click(hidePopup);
 $('.controls *').click( () => window.location = '/popup/index.html' );
