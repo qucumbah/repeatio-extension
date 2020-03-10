@@ -22,7 +22,6 @@ chrome.runtime.onInstalled.addListener(function() {
     title: 'Add to repeat list',
     contexts: ['selection']
   });
-  chrome.contextMenus.onClicked.addListener(add);
 
   // chrome.storage.sync.remove(['wordGroups'])
 
@@ -34,3 +33,5 @@ chrome.runtime.onInstalled.addListener(function() {
     chrome.storage.sync.set({ wordGroups });
   });
 });
+
+chrome.contextMenus.onClicked.addListener(add);
