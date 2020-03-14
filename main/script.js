@@ -64,12 +64,12 @@ const shuffle = (array) => {
   }
   return array;
 };
-const pickFrom = (from, number) => {
-  if (number > from.length) {
+const pickFrom = (array, number) => {
+  if (number > array.length) {
     throw new Exception('Too many values to pick');
   }
 
-  return shuffle( from.slice(0) ).slice(0, number);
+  return shuffle( array.slice(0) ).slice(0, number);
 };
 
 const playGame = (wordGroups, distribution, callback) => {
@@ -101,7 +101,7 @@ const playGame = (wordGroups, distribution, callback) => {
     const random = Math.random();
     const totalWords = distribution.reduce((prev, cur) => prev + cur, 0);
     let sum = 0;
-    return distribution.findIndex(wordsInThisGroup => {
+    return distribution.findIndex((wordsInThisGroup) => {
       sum += wordsInThisGroup / totalWords;
       return sum > random;
     });
@@ -113,7 +113,7 @@ const playGame = (wordGroups, distribution, callback) => {
     showWord( wordGroups[currentGroupIndex][0] );
     wordsLeftContainer.text('Words left: ' + wordsLeft);
   };
-  
+
   let wordsLeft = distribution.reduce((prev, cur) => prev + cur, 0);
   next();
   nextWordButton.on('click', () => {
@@ -133,14 +133,13 @@ const playGame = (wordGroups, distribution, callback) => {
 
 $('#startButton').on('click', () => {
   const numberOfWords = numberOfWordsContainer.val();
-  //$('body').html('');
 
   chrome.storage.sync.get(['wordGroups'], ({ wordGroups: allWordGroups }) => {
     //Exclude learnt words group
     const wordGroups = allWordGroups.slice(0, allWordGroups.length - 1);
     const distribution = getDistribution(wordGroups, numberOfWords);
 
-    playGame(allWordGroups, distribution, newWordGroups => {
+    playGame(allWordGroups, distribution, (newWordGroups) => {
       $('#game').hide();
       $('#endScreen').show();
       chrome.storage.sync.set({ wordGroups: newWordGroups });
@@ -151,7 +150,8 @@ $('#startButton').on('click', () => {
 // $('.goBackButton').on('click', () => window.location = '/popup/index.html');
 $('.goBackButton').on('click', () => window.close());
 
-setTimeout(
-  () => $('.blockTransionsOnStart').toggleClass('blockTransionsOnStart'),
-  500
-);
+// setTimeout(
+//   () => $('.blockTransionsOnStart').toggleClass('blockTransionsOnStart'),
+//   500
+// );
+document.addEventListener('DOMContentLoaded', () => $('.blockTransionsOnStart').toggleClass('blockTransionsOnStart'));

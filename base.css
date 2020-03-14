@@ -70,7 +70,20 @@ ul li {
   height: 24px;
   overflow: hidden;
 
-  /* These properties will be changed in js for cool unwrap effect */
   padding: 1px 0px;
   opacity: 0;
+  animation: unwrap 0.5s ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes unwrap {
+  from {
+    padding: 1px 0px;
+    opacity: 0;
+  }
+
+  to {
+    padding: 1px 15px;
+    opacity: 1;
+  }
 }

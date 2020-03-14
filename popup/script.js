@@ -9,18 +9,11 @@ chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
       </li>`
     );
     wordGroup.css({
-      'transition-delay': index / 32 + 's',
+      'animation-delay': index / 32 + 's',
     });
     return wordGroup;
   });
   container.append(wordGroupsDom);
-
-  setTimeout(() => {
-    $('.wordGroup').css({
-      'padding': '1px 15px',
-      'opacity': '1',
-    });
-  }, 50);
 });
 
 //$('#repeatButton').click( () => window.location = '/main/index.html' );

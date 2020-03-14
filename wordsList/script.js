@@ -18,9 +18,9 @@ const setLoading = (isLoading) => {
   }
 };
 
-const updateScreen = (wordGroups) => {
-  if (wordGroups) {
-    $('.fullList').html( wordGroups.map(renderGroup) );
+const updateScreen = (updatadWordGroups) => {
+  if (updatadWordGroups) {
+    $('.fullList').html( updatadWordGroups.map(renderGroup) );
   } else {
     setBlurred(true);
     setLoading(true);
@@ -30,13 +30,6 @@ const updateScreen = (wordGroups) => {
       setLoading(false);
     });
   }
-
-  setTimeout(() => {
-    $('.wordContainer').css({
-      'padding': '1px 15px',
-      'opacity': '1',
-    });
-  }, 50);
 };
 
 const hidePopup = () => {
@@ -68,7 +61,7 @@ const removeWord = (groupIndex, wordIndex) => {
 
 const renderWord = (word, wordIndex, groupIndex) => {
   const wordContainer = $('<li class="wordContainer"></li>');
-  wordContainer.css('transition-delay', wordIndex / 32 + 's');
+  wordContainer.css('animation-delay', wordIndex / 32 + 's');
   wordContainer.append( $('<div class="word">' + word + '</div>') );
   const removeWordButton = $('<div class="removeWordButton">Remove</div>');
   removeWordButton.click(() => {
