@@ -147,11 +147,6 @@ $('#startButton').on('click', () => {
   });
 });
 
-// $('.goBackButton').on('click', () => window.location = '/popup/index.html');
 $('.goBackButton').on('click', () => window.close());
 
-// setTimeout(
-//   () => $('.blockTransionsOnStart').toggleClass('blockTransionsOnStart'),
-//   500
-// );
 document.addEventListener('DOMContentLoaded', () => $('.blockTransionsOnStart').toggleClass('blockTransionsOnStart'));

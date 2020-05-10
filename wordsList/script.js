@@ -1,16 +1,7 @@
 //React would've worked really good here
 
-const setBlurred = (isBlurred) => {
-  if (isBlurred) {
-    $('body').addClass('blurred');
-    $('.actionBlocker').show();
-  } else {
-    $('body').removeClass('blurred');
-    $('.actionBlocker').hide();
-  }
-};
-
 const setLoading = (isLoading) => {
+  // return;
   if (isLoading) {
     $('body').addClass('loading');
   } else {
@@ -22,33 +13,14 @@ const updateScreen = (updatadWordGroups) => {
   if (updatadWordGroups) {
     $('.fullList').html( updatadWordGroups.map(renderGroup) );
   } else {
-    setBlurred(true);
-    setLoading(true);
+    util.setBlurred(true);
+    // setLoading(true);
     chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
       $('.fullList').html( wordGroups.map(renderGroup) );
-      setBlurred(false);
-      setLoading(false);
+      util.setBlurred(false);
+      // setLoading(false);
     });
   }
-};
-
-const hidePopup = () => {
-  $('.popup').hide();
-  $('.popup').css('opacity', 0);
-  setBlurred(false);
-};
-const showPopup = (text, yesAction) => {
-  $('.popupText').text(text);
-  $('.popup .yesButton').click(function() {
-    yesAction();
-    $(this).off('click');
-    hidePopup();
-  });
-  $('.popup .noButton').click(hidePopup);
-
-  $('.popup').show();
-  $('.popup').css('opacity', 1);
-  setBlurred(true);
 };
 
 const removeWord = (groupIndex, wordIndex) => {
@@ -65,7 +37,7 @@ const renderWord = (word, wordIndex, groupIndex) => {
   wordContainer.append( $('<div class="word">' + word + '</div>') );
   const removeWordButton = $('<div class="removeWordButton">Remove</div>');
   removeWordButton.click(() => {
-    showPopup(
+    util.showPopup(
       'Are you sure you want to remove word "' + word + '"?',
       () => removeWord(groupIndex, wordIndex)
     );
@@ -94,5 +66,5 @@ const renderGroup = (group, groupIndex) => {
 
 updateScreen();
 
-$('.actionBlocker').click(hidePopup);
+$('.actionBlocker').click(util.hidePopup);
 $('.controls *').click( () => window.location = '/popup/index.html' );
