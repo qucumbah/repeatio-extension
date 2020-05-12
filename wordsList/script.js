@@ -30,11 +30,44 @@ const removeWord = (groupIndex, wordIndex) => {
     updateScreen(wordGroups);
   });
 };
+const updateWord = (groupIndex, wordIndex, newWord) => {
+  chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
+    const oldWord = wordGroups[groupIndex][wordIndex];
+    if (oldWord === newWord) {
+      return;
+    }
+
+    wordGroups[groupIndex][wordIndex] = newWord;
+    chrome.storage.sync.set({ wordGroups });
+    updateScreen(wordGroups);
+  });
+};
 
 const renderWord = (word, wordIndex, groupIndex) => {
   const wordContainer = $('<li class="wordContainer"></li>');
   wordContainer.css('animation-delay', wordIndex / 32 + 's');
-  wordContainer.append( $('<div class="word">' + word + '</div>') );
+
+  const wordInput = $('<input class="word" type="text">');
+  wordInput.val(word);
+
+  const translationContainer = $('<div class="translationContainer"></div>');
+  const updateTranslation = async () => {
+    const currentWord = wordInput.val();
+    const translation = await util.getTranslation(currentWord);
+    translationContainer.text(translation);
+  };
+
+  wordInput.on('focus', () => {
+    wordContainer.addClass('isEditing');
+    updateTranslation();
+  });
+  wordInput.on('blur', () => {
+    wordContainer.removeClass('isEditing');
+    updateWord(wordIndex, groupIndex, wordInput.val());
+  });
+
+  wordInput.on('input', updateTranslation);
+
   const removeWordButton = $('<div class="removeWordButton">Remove</div>');
   removeWordButton.click(() => {
     util.showPopup(
@@ -42,7 +75,13 @@ const renderWord = (word, wordIndex, groupIndex) => {
       () => removeWord(groupIndex, wordIndex)
     );
   });
-  wordContainer.append(removeWordButton);
+
+  const wordControls = $('<div class="wordControls"></div>');
+  wordControls.append(wordInput);
+  wordControls.append(removeWordButton);
+
+  wordContainer.append(wordControls);
+  wordContainer.append(translationContainer);
   return wordContainer;
 };
 
@@ -67,4 +106,7 @@ const renderGroup = (group, groupIndex) => {
 updateScreen();
 
 $('.actionBlocker').click(util.hidePopup);
-$('.controls *').click( () => window.location = '/popup/index.html' );
+$('.goBackButton').click( () => window.location = '/popup/index.html' );
+$('.wordAddButton').click(
+  () => window.location = '/wordAdditionMenu/index.html'
+);

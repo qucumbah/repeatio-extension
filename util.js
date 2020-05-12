@@ -41,12 +41,14 @@ util.showPopup = (html, yesAction) => {
 const translationApiKey = 'trnsl.1.1.20200422T083917Z.28cbd2f52df07dcd.a776528bbd937c69b808570840b48a58224acf25';
 
 util.getTranslation = (text) => {
-  console.log(text);
+  // console.log(text);
   const trimmedText = text.trim();
   if (trimmedText.length === 0) {
     return Promise.resolve('');
   }
 
   const request = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${translationApiKey}&text=${text}&lang=en-ru`;
-  return fetch(request);
+  return fetch(request)
+    .then((response) => response.json())
+    .then((json) => json.text[0]);
 };

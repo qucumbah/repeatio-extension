@@ -36,21 +36,37 @@ body {
   align-content: center;
 }
 
-.controls .goBackButton {
-  filter: invert(1);
+.controls .button {
+  display: flex;
+  justify-content: start;
+  width: 50%;
+}
+.controls .svgContainer {
+  box-sizing: border-box;
   height: 60px;
   width: 60px;
-  box-sizing: border-box;
   padding: 10px;
   cursor: pointer;
   transition: 0s;
+  /* width: 100%;
+  height: 100%; */
 }
-.controls .goBackButton svg, .controls .goBackButton path {
-  width: 100%;
-  height: 100%;
+.controls svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.controls .goBackButton svg {
+  width: 45px;
+  height: 45px;
+}
+.controls .wordAddButton svg {
+  width: 40px;
+  height: 40px;
 }
 
-.controls .goBackText {
+.controls .text {
   height: 100%;
   box-sizing: border-box;
   padding: 15px 4px;
@@ -83,4 +99,35 @@ body {
 }
 .removeWordButton:hover {
   color: red;
+}
+
+.wordContainer {
+  display: block;
+}
+
+.wordContainer.isEditing {
+  overflow: auto;
+  height: auto;
+  min-height: 24px;
+}
+.wordContainer.isEditing .removeWordButton {
+  /* display: none; */
+}
+
+.wordControls {
+  display: flex;
+  justify-content: space-between;
+}
+.wordControls input {
+  padding-left: 28px;
+}
+.wordControls::before {
+  position: absolute;
+  content: '';
+  width: 24px;
+  height: 24px;
+  background-image: url(../img/edit.svg);
+  transform: scale(0.8);
+  filter: invert(0.5);
+  background-size: contain;
 }

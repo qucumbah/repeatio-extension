@@ -27,3 +27,11 @@ body {
 .controls {
   margin-top: 20px;
 }
+
+[type="text"] {
+  border: 2px solid #888;
+  border-radius: 10px;
+}
+[type="text"]:focus {
+  outline: none;
+}

@@ -14,9 +14,9 @@ const setTranslationText = (translationText) => {
 const wordInput = $('#wordInput');
 wordInput.on('input', () => {
   const text = wordInput.val();
-  util.getTranslation(text)
-    .then((response) => response.json())
-    .then((json) => setTranslationText(json.text[0]));
+  util.getTranslation(text).then(
+    (translationText) => setTranslationText(translationText)
+  );
 });
 
 $('.yesButton').click(() => {

@@ -130,3 +130,14 @@ ul li {
   width: 100%;
   margin: 10px;
 }
+
+[type="text"] {
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  padding: 5px;
+}
+[type="text"]:focus {
+  outline: 1px solid #888;
+  outline-offset: 0;
+}
