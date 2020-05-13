@@ -63,7 +63,7 @@ const renderWord = (word, wordIndex, groupIndex) => {
   });
   wordInput.on('blur', () => {
     wordContainer.removeClass('isEditing');
-    updateWord(wordIndex, groupIndex, wordInput.val());
+    updateWord(groupIndex, wordIndex, wordInput.val());
   });
 
   wordInput.on('input', updateTranslation);

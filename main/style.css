@@ -6,6 +6,7 @@ body {
   display: flex;
   justify-content: space-around;
   margin: 15px;
+  margin-top: 30px;
 }
 
 #preparation #numberOfWords {
@@ -17,6 +18,10 @@ body {
   font-weight: 900;
   padding: 0px 10px;
   outline: none;
+}
+
+#preparation [type="button"] {
+  margin-left: 15px;
 }
 
 #game {
@@ -34,14 +39,23 @@ body {
   text-align: center;
 }
 
+#game .translation {
+  margin: 30px;
+}
+
 #game .controls {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr;
 }
 
 #game [type="button"] {
   width: 100%;
-  margin: 0px 10px;
+  min-width: 0;
+}
+
+#finishButton {
+  grid-column: span 2;
 }
 
 #endScreen {

@@ -93,9 +93,24 @@ const playGame = (wordGroups, distribution, callback) => {
       translationContainer.hide();
     }
   };
-  const showTranslation = word => {
-    //Translate word or show user translation
+
+  const showTranslation = async () => {
+    translationContainer.show();
+    showTranslationButton.hide();
+    nextWordButton.css('grid-column', 'span 2');
+
+    const text = wordContainer.text();
+    const translation = await util.getTranslation(text);
+    translationContainer.text(translation);
   };
+  const hideTranslation = () => {
+    translationContainer.hide();
+    showTranslationButton.show();
+    nextWordButton.css('grid-column', 'span 1');
+    translationContainer.text('');
+  };
+
+  showTranslationButton.on('click', showTranslation);
 
   const pickRandomGroup = distribution => {
     const random = Math.random();
@@ -111,6 +126,7 @@ const playGame = (wordGroups, distribution, callback) => {
   const next = () => {
     currentGroupIndex = pickRandomGroup(distribution);
     showWord( wordGroups[currentGroupIndex][0] );
+    hideTranslation();
     wordsLeftContainer.text('Words left: ' + wordsLeft);
   };
 
