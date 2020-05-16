@@ -50,7 +50,7 @@ const renderWord = (word, wordIndex, groupIndex) => {
   const wordInput = $('<input class="word" type="text">');
   wordInput.val(word);
 
-  const translationContainer = $('<div class="translationContainer"></div>');
+  const translationContainer = $('<div class="translation"></div>');
   const updateTranslation = async () => {
     const currentWord = wordInput.val();
     const translation = await util.getTranslation(currentWord);

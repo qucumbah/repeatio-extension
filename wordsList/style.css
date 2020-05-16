@@ -110,9 +110,6 @@ body {
   height: auto;
   min-height: 24px;
 }
-.wordContainer.isEditing .removeWordButton {
-  /* display: none; */
-}
 
 .wordControls {
   display: flex;

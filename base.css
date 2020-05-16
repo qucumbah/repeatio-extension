@@ -102,7 +102,6 @@ ul li {
   }
 }
 
-
 .popup {
   position: fixed;
   width: 80%;
@@ -129,6 +128,10 @@ ul li {
 .popupControls * {
   width: 100%;
   margin: 10px;
+}
+
+.translation {
+  white-space: pre-line;
 }
 
 [type="text"] {
