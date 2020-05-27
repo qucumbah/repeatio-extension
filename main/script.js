@@ -86,28 +86,27 @@ const playGame = (wordGroups, distribution, callback) => {
 
   finishButton.on('click', () => callback(wordGroups));
 
-  const showWord = (word) => {
-    wordContainer.text(word);
-    showTranslationButton.show();
-    if (!alwaysShowTranslation.attr('checked')) {
-      translationContainer.hide();
-    }
-  };
-
   const showTranslation = async () => {
-    translationContainer.show();
     showTranslationButton.hide();
     nextWordButton.css('grid-column', 'span 2');
 
     const text = wordContainer.text();
+    translationContainer.text('.....');
     const translation = await util.getTranslation(text);
     translationContainer.text(translation);
   };
   const hideTranslation = () => {
-    translationContainer.hide();
     showTranslationButton.show();
     nextWordButton.css('grid-column', 'span 1');
     translationContainer.text('');
+  };
+
+  const showWord = (word) => {
+    wordContainer.text(word);
+    showTranslationButton.show();
+    if (!alwaysShowTranslation.attr('checked')) {
+      hideTranslation();
+    }
   };
 
   showTranslationButton.on('click', showTranslation);

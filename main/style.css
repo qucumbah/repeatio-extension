@@ -41,6 +41,8 @@ body {
 
 #game .translation {
   margin: 30px;
+  height: 180px;
+  overflow-y: auto;
 }
 
 #game .controls {
