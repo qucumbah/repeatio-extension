@@ -13,18 +13,13 @@ body {
   margin: 0;
 }
 
-body * {
+body .blurrable {
   filter: blur(0px);
   transition: 0.5s;
   transition-property: filter;
 }
-body.blurred * {
+body.blurred .blurrable {
   filter: blur(2px);
-}
-
-.unblurrable, .unblurrable * {
-  filter: blur(0px) !important;
-  z-index: 3;
 }
 
 .blockTransionsOnStart * {

@@ -106,7 +106,7 @@ const renderGroup = (group, groupIndex) => {
 updateScreen();
 
 $('.actionBlocker').click(util.hidePopup);
-$('.goBackButton').click( () => window.location = '/popup/index.html' );
+$('.goBackButton').click( () => window.close() );
 $('.wordAddButton').click(
   () => window.location = '/wordAdditionMenu/index.html'
 );

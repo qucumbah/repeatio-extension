@@ -10,8 +10,7 @@
   <title>Repeatio</title>
 </head>
 <body>
-  <div class="controlsPlaceholder"></div>
-  <div class="controls unblurrable">
+  <div class="controls">
     <div class="button goBackButton">
       <div class="svgContainer">
         <svg fill="#fff" viewBox="0 0 24 24">
@@ -34,10 +33,12 @@
       <div class="text">Add word</div>
     </div>
   </div>
-  <div class="fullList"></div>
+  <div class="listContainer">
+    <div class="fullList blurrable"></div>
+  </div>
   <div class="actionBlocker" style="display: none;"></div>
-  <div class="loading unblurrable" style="display: none;">Loading...</div>
-  <div class="popup unblurrable" style="display: none;">
+  <div class="loading" style="display: none;">Loading...</div>
+  <div class="popup" style="display: none;">
     <div class="popupContent"></div>
     <div class="popupControls">
       <input type="button" class="yesButton" value="Ok">

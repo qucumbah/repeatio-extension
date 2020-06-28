@@ -18,7 +18,9 @@ chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
 
 //$('#repeatButton').click( () => window.location = '/main/index.html' );
 $('#repeatButton').click( () => window.open('/main/index.html', '_blank') );
-$('#wordsListButton').click( () => window.location = '/wordsList/index.html' );
+$('#wordsListButton').click(
+  () => window.open('/wordsList/index.html', '_blank')
+);
 $('#addWordButton').click(
   () => window.location = '/wordAdditionMenu/index.html'
 );
