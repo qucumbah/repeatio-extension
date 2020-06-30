@@ -1,8 +1,11 @@
 body {
   width: 400px;
   bottom: 0;
-  padding: 1rem;
   box-sizing: border-box;
+}
+
+.pane {
+  padding: 20px;
 }
 
 .controls {

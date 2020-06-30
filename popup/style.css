@@ -1,6 +1,7 @@
 body {
   width: 200px;
   padding: 20px;
+  background-color: #191B20;
 }
 
 [type="button"] {

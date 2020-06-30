@@ -5,12 +5,12 @@
   <script src="/jquery-3.4.1.min.js" defer></script>
   <script src="/util.js" defer></script>
   <script src="/main/script.js" defer></script>
-  <link rel="stylesheet" href="/main/style.css">
   <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/main/style.css">
   <title>Repeatio</title>
 </head>
 <body class="blockTransionsOnStart">
-  <div id="preparation">
+  <div id="preparation" class="pane">
     <div class="title">How many words do you want to repeat?</div>
     <div class="controls">
       <input id="numberOfWords" type="number" max="0" min="0">
@@ -18,7 +18,7 @@
       <input class="goBackButton secondary" type="button" value="Go back">
     </div>
   </div>
-  <div id="game" style="display: none;">
+  <div id="game" class="pane" style="display: none;">
     <!--
     <input type="checkbox" id="alwaysShowTranslation">
     <label for="alwaysShowTranslation">Always show translation</label>
@@ -32,7 +32,7 @@
       <input id="finishButton" class="secondary" type="button" value="Finish">
     </div>
   </div>
-  <div id="endScreen" style="display: none;">
+  <div id="endScreen" class="pane" style="display: none;">
     <div class="title">Congratz!</div>
     <input class="goBackButton secondary" type="button" value="Go back">
   </div>

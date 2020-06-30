@@ -1,8 +1,13 @@
 body {
-  width: 400px;
+
+}
+
+#preparation {
+  padding: 20px;
 }
 
 #preparation .controls {
+  position: relative;
   display: flex;
   justify-content: space-around;
   margin: 15px;
@@ -25,7 +30,8 @@ body {
 }
 
 #game {
-  padding: 15px;
+  width: 330px;
+  padding: 20px 20px 30px;
 }
 
 #game .wordsLeft {
@@ -62,6 +68,12 @@ body {
 
 #endScreen {
   padding: 15px;
+  width: 330px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #endScreen [type="button"] {

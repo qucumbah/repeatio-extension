@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background-color: #09090c;
+  background-color: #2C3038;
   color: #fff;
   font-size: 16px;
   margin: 0;
@@ -20,6 +20,12 @@ body .blurrable {
 }
 body.blurred .blurrable {
   filter: blur(2px);
+}
+
+.pane {
+  background-color: #191B20;
+  box-shadow: 0 0 10px 0 #000000cc;
+  border-radius: 6px;
 }
 
 .blockTransionsOnStart * {
@@ -100,20 +106,20 @@ ul li {
 
 .popup {
   position: fixed;
-  width: 80%;
+  width: 600px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  border-radius: 20px;
-  background-color: #09090c;
-  border: 2px solid white;
   transition: 0.5s;
   transition-property: opacity;
+  box-shadow: 0 0 20px 0 #000000ff;
+  z-index: 4;
 }
 
 .popupContent {
   font-size: 20px;
+  text-align: center;
 }
 
 .popupControls {
