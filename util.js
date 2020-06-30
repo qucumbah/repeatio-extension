@@ -6,7 +6,7 @@ util.getGroupName = groupIndex => {
   if (groupIndex < 10) {
     return 'Repeated ' + groupIndex + ' times';
   }
-  return 'Learnt';
+  return 'Learned words';
 };
 
 util.setBlurred = (isBlurred) => {
