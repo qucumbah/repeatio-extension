@@ -9,6 +9,8 @@ util.getGroupName = groupIndex => {
   return 'Learned words';
 };
 
+util.learnedWordsGroupIndex = 10;
+
 util.setBlurred = (isBlurred) => {
   if (isBlurred) {
     $('body').addClass('blurred');

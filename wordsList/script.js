@@ -42,8 +42,17 @@ const updateWord = (groupIndex, wordIndex, newWord) => {
     updateScreen(wordGroups);
   });
 };
+const markWordAsLearned = (groupIndex, wordIndex) => {
+  chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
+    const [word] = wordGroups[groupIndex].splice(wordIndex, 1);
+    wordGroups[wordGroups.length - 1].push(word);
+    chrome.storage.sync.set({ wordGroups });
+    updateScreen(wordGroups);
+  });
+};
 
 const renderWord = (word, wordIndex, groupIndex) => {
+  console.log(word, wordIndex);
   const wordContainer = $('<li class="wordContainer"></li>');
   // wordContainer.css('animation-delay', wordIndex / 32 + 's');
 
@@ -75,9 +84,19 @@ const renderWord = (word, wordIndex, groupIndex) => {
       () => removeWord(groupIndex, wordIndex)
     );
   });
+  const markAsLearnedButton = $(
+    '<div class="markAsLearnedButton">Mark as learned</div>'
+  );
+  markAsLearnedButton.click(() => {
+    util.showPopup(
+      'Are you sure you want to mark word "' + word + '" as learned?',
+      () => markWordAsLearned(groupIndex, wordIndex)
+    );
+  });
 
   const wordControls = $('<div class="wordControls"></div>');
   wordControls.append(wordInput);
+  wordControls.append(markAsLearnedButton);
   wordControls.append(removeWordButton);
 
   wordContainer.append(wordControls);
@@ -99,10 +118,8 @@ const getUnwrapButtons = (
     '<input type="button" value="Show next 20 words">'
   );
   const unwrapAllButton = $(
-    '<input type="button" class="secondary" value="Show all remaining words">'
+    '<input type="button" class="secondary" value="">'
   );
-
-  console.log(unwrapButtonsContainer);
 
   unwrapButtonsContainer.append(unwrapTwentyButton);
   unwrapButtonsContainer.append(unwrapAllButton);
@@ -110,13 +127,23 @@ const getUnwrapButtons = (
 
   let firstHiddenWordIndex = limit;
 
+  const updateUnwrapButtonText = () => {
+    const remainingWords = group.length - firstHiddenWordIndex;
+    unwrapAllButton.val(`Show ${remainingWords} remaining words`);
+  };
+  updateUnwrapButtonText();
+
   unwrapTwentyButton.click(() => {
     const fromIndex = firstHiddenWordIndex;
     const toIndex = Math.min(group.length, fromIndex + 20);
 
     const newWordsToShow = group
       .slice(fromIndex, toIndex)
-      .map((word, wordIndex) => renderWord(word, wordIndex, groupIndex));
+      .map((word, wordIndex) => renderWord(
+        word,
+        fromIndex + wordIndex,
+        groupIndex
+      ));
 
     if (toIndex === group.length) {
       unwrapButtonsContainer.remove();
@@ -124,6 +151,7 @@ const getUnwrapButtons = (
 
     wordsContainer.append(newWordsToShow);
     firstHiddenWordIndex += 20;
+    updateUnwrapButtonText();
   });
 
   unwrapAllButton.click(() => {
@@ -132,7 +160,11 @@ const getUnwrapButtons = (
 
     const newWordsToShow = group
       .slice(fromIndex, toIndex)
-      .map((word, wordIndex) => renderWord(word, wordIndex, groupIndex));
+      .map((word, wordIndex) => renderWord(
+        word,
+        fromIndex + wordIndex,
+        groupIndex
+      ));
 
     unwrapButtonsContainer.remove();
     wordsContainer.append(newWordsToShow);
@@ -169,7 +201,6 @@ const renderGroup = (group, groupIndex) => {
       wordsContainer,
       limit
     );
-    console.log(unwrapButtons);
     groupContainer.append(unwrapButtons);
   }
 

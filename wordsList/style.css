@@ -8,7 +8,7 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 500px;
+  width: 600px;
   border-radius: 0;
 }
 
@@ -114,16 +114,6 @@ body {
   text-align: center;
 }
 
-.removeWordButton {
-  color: #ff5e00;
-  cursor: pointer;
-  transition: 0.5s;
-  transition-property: color;
-}
-.removeWordButton:hover {
-  color: red;
-}
-
 .wordsContainer {
   display: flex;
   /* flex-direction: column-reverse; */
@@ -143,10 +133,7 @@ body {
 
 .wordControls {
   display: flex;
-  justify-content: space-between;
-}
-.wordControls input {
-  padding-left: 28px;
+  justify-content: start;
 }
 .wordControls::before {
   position: absolute;
@@ -157,6 +144,31 @@ body {
   transform: scale(0.8);
   filter: invert(0.5);
   background-size: contain;
+}
+.wordControls input {
+  padding-left: 28px;
+}
+
+.removeWordButton, .markAsLearnedButton {
+  cursor: pointer;
+  transition: 0.5s;
+  transition-property: color;
+}
+
+.removeWordButton {
+  color: #ff5e00;
+}
+.removeWordButton:hover {
+  color: red;
+}
+
+.markAsLearnedButton {
+  color: #21cc5a;
+  margin-left: auto;
+  margin-right: 15px;
+}
+.markAsLearnedButton:hover {
+  color: #00fd54;
 }
 
 .unwrapButtonsContainer {

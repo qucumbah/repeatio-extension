@@ -30,7 +30,10 @@ body {
 }
 
 #game {
+  display: flex;
+  flex-direction: column;
   width: 330px;
+  height: 420px;
   padding: 20px 20px 30px;
 }
 
@@ -47,11 +50,11 @@ body {
 
 #game .translation {
   margin: 30px;
-  height: 180px;
   overflow-y: auto;
 }
 
 #game .controls {
+  margin-top: auto;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr;
