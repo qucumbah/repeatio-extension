@@ -35,3 +35,25 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.contextMenus.onClicked.addListener(add);
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  const { method, data } = message;
+
+  if (method === 'fetchJSONThroughBackground') {
+    fetch(data)
+      .then((response) => response.json())
+      .then((json) => sendResponse([null, json]))
+      .catch((error) => sendResponse([error]));
+
+    return true;
+  }
+
+  if (method === 'addWordToRepeatList') {
+    chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
+      wordGroups[0].push(data);
+      chrome.storage.sync.set({ wordGroups });
+    });
+
+    return;
+  }
+});

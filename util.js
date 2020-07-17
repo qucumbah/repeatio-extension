@@ -40,11 +40,29 @@ util.showPopup = (html, yesAction) => {
   util.setBlurred(true);
 };
 
+const fetchJSONThroughBackground = (request) => new Promise(
+  (resolve, reject) => {
+    const message = {
+      method: 'fetchJSONThroughBackground',
+      data: request,
+    };
+
+    const callback = ([error, response]) => {
+      if (error !== null) {
+        reject(error);
+      }
+
+      resolve(response);
+    };
+
+    chrome.runtime.sendMessage(message, callback);
+  }
+);
+
 const translationApiKey = 'trnsl.1.1.20200422T083917Z.28cbd2f52df07dcd.a776528bbd937c69b808570840b48a58224acf25';
 const dictionaryApiKey = 'dict.1.1.20190711T095338Z.484d81ae92e52b2a.f377215fa79771b02fb5f2343803aa24876acbe2';
 
 util.getTranslation = async (text) => {
-  // console.log(text);
   const trimmedText = text.trim();
   if (trimmedText.length === 0) {
     return Promise.resolve('');
@@ -54,15 +72,14 @@ util.getTranslation = async (text) => {
   const translationApiRequest = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${translationApiKey}&lang=en-ru&text=${text}`;
 
   const [
-    dictionaryApiResponse,
-    translationApiResponse,
+    dictionaryResponseJson,
+    translationResponseJson,
   ] = await Promise.all([
-    fetch(dictionaryApiRequest),
-    fetch(translationApiRequest),
+    fetchJSONThroughBackground(dictionaryApiRequest),
+    fetchJSONThroughBackground(translationApiRequest),
   ]);
 
-  const dictionaryResponseJson = await dictionaryApiResponse.json();
-  const translationResponseJson = await translationApiResponse.json();
+  console.log(dictionaryResponseJson, translationResponseJson);
 
   const dictionaryApiHasResult = (dictionaryResponseJson.def.length !== 0);
   if (dictionaryApiHasResult) {
@@ -75,3 +92,8 @@ util.getTranslation = async (text) => {
 
   return translationResponseJson.text[0];
 };
+
+util.addWordToRepeatList = (word) => chrome.runtime.sendMessage({
+  method: 'addWordToRepeatList',
+  data: word,
+});
