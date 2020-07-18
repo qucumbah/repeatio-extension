@@ -52,7 +52,6 @@ const markWordAsLearned = (groupIndex, wordIndex) => {
 };
 
 const renderWord = (word, wordIndex, groupIndex) => {
-  console.log(word, wordIndex);
   const wordContainer = $('<li class="wordContainer"></li>');
   // wordContainer.css('animation-delay', wordIndex / 32 + 's');
 

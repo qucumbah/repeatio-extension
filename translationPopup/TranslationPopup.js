@@ -18,6 +18,7 @@ class TranslationPopup {
 
     this.translationContainer = this.element.find('.translation');
     this.wordInput = this.element.find('.wordInput');
+
     this.addButton = this.element.find('.addButton');
     this.cancelButton = this.element.find('.cancelButton');
 
@@ -56,7 +57,6 @@ class TranslationPopup {
   }
 
   hide() {
-    console.log('hide');
     this.element.css({
       display: 'none',
     });

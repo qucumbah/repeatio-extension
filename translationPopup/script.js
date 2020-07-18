@@ -9,7 +9,7 @@ const getSelection = () => {
 
   return {
     selectionX: x + width / 2,
-    selectionY: y,
+    selectionY: y + window.scrollY,
     text
   };
 };

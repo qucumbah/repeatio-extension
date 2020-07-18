@@ -5,8 +5,10 @@
   padding: 18px;
   width: 250px;
   background-color: #fff;
+  color: #000;
   box-shadow: 0 0 8px 0 #0008;
   z-index: 100000;
+  font-size: 16px;
 }
 
 .translationPopup .word {
@@ -16,7 +18,6 @@
 .translationPopup .wordInput {
   font: inherit;
   background-color: #fff;
-  color: #000;
   font-weight: 700;
   border: none;
   padding: 5px;
@@ -25,18 +26,19 @@
   box-sizing: border-box;
   width: 100%;
 }
-.translationPopup .wordInput::after {
-  content: '';
+.translationPopup .word::after {
+  content: '📝';
   width: 16px;
   height: 16px;
-  background-image: url(../img/edit.svg);
   position: absolute;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
-  background-size: contain;
   pointer-events: none;
   filter: invert(0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .translationPopup .wordInput:focus {
   outline: 1px solid #000;
@@ -71,4 +73,6 @@
   padding: 5px 15px;
   background-color: #368cff;
   color: #fff;
+  min-height: auto;
+  line-height: normal;
 }

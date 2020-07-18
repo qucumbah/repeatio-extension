@@ -79,8 +79,6 @@ util.getTranslation = async (text) => {
     fetchJSONThroughBackground(translationApiRequest),
   ]);
 
-  console.log(dictionaryResponseJson, translationResponseJson);
-
   const dictionaryApiHasResult = (dictionaryResponseJson.def.length !== 0);
   if (dictionaryApiHasResult) {
     return dictionaryResponseJson.def.map((definition) => (
