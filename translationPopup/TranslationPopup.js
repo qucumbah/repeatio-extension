@@ -1,7 +1,8 @@
 const popupCode = `
 <div class="translationPopup">
   <div class="word">
-    <input type="text" class="wordInput"/>
+    <input type="text" class="wordInput">
+    <div class="repeatio__smallButton pronounceButton" title="Pronounce"></div>
   </div>
   <div class="translation"></div>
   <div class="buttons">
@@ -18,6 +19,9 @@ class TranslationPopup {
 
     this.translationContainer = this.element.find('.translation');
     this.wordInput = this.element.find('.wordInput');
+
+    this.pronounceButton = this.element.find('.pronounceButton');
+    this.pronounceButton.click(() => util.pronounce(this.getText()));
 
     this.addButton = this.element.find('.addButton');
     this.cancelButton = this.element.find('.cancelButton');
@@ -45,11 +49,15 @@ class TranslationPopup {
     this.updateTranslation();
   }
 
+  getText() {
+    return this.wordInput.val();
+  }
+
   async updateTranslation() {
     this.translationContainer.empty();
     this.translationContainer.append(this.translationPlaceholder);
 
-    const text = this.wordInput.val();
+    const text = this.getText();
     const translation = await util.getTranslation(text);
 
     this.translationContainer.empty();

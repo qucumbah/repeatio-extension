@@ -26,6 +26,7 @@
       "/translationPopup/script.js"
     ],
     "css": [
+      "/smallButton.css",
       "/translationPopup/style.css"
     ]
   }],

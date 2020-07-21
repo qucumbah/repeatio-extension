@@ -1,0 +1,44 @@
+/*
+  Since this css will be included to every page we have to make sure it doesn't
+  change anything besides our injected content
+*/
+.repeatio__smallButton {
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  margin: 4px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.repeatio__smallButton::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.repeatio__smallButton.pronounceButton,
+.repeatio__smallButton.markAsLearnedButton {
+  background-color: #4cec0d;
+}
+
+.repeatio__smallButton.removeWordButton {
+  background-color: #ee0c0c;
+}
+
+.repeatio__smallButton.pronounceButton::after {
+  background-image: url(../img/speaker.svg);
+}
+.repeatio__smallButton.markAsLearnedButton::after {
+  background-image: url(../img/flag.svg);
+}
+.repeatio__smallButton.removeWordButton::after {
+  background-image: url(../img/garbage.svg);
+}

@@ -95,3 +95,10 @@ util.addWordToRepeatList = (word) => chrome.runtime.sendMessage({
   method: 'addWordToRepeatList',
   data: word,
 });
+
+util.speechSynthesisSupported = window.speechSynthesis !== null;
+
+util.pronounce = (text) => {
+  const utterance = new SpeechSynthesisUtterance(text);
+  window.speechSynthesis.speak(utterance);
+};

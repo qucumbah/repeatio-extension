@@ -133,7 +133,8 @@ body {
 
 .wordControls {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
+  align-items: center;
 }
 .wordControls::before {
   position: absolute;
@@ -147,28 +148,11 @@ body {
 }
 .wordControls input {
   padding-left: 28px;
+  width: 100%;
 }
 
-.removeWordButton, .markAsLearnedButton {
-  cursor: pointer;
-  transition: 0.5s;
-  transition-property: color;
-}
-
-.removeWordButton {
-  color: #ff5e00;
-}
-.removeWordButton:hover {
-  color: red;
-}
-
-.markAsLearnedButton {
-  color: #21cc5a;
-  margin-left: auto;
-  margin-right: 15px;
-}
-.markAsLearnedButton:hover {
-  color: #00fd54;
+.smallButtonsContainer {
+  display: flex;
 }
 
 .unwrapButtonsContainer {

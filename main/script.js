@@ -83,6 +83,9 @@ const playGame = (wordGroups, distribution, callback) => {
   const showTranslationButton = $('#showTranslationButton');
   const alwaysShowTranslation = $('#alwaysShowTranslation');
   const finishButton = $('#finishButton');
+  const pronounceButton = $('.pronounceButton');
+
+  pronounceButton.click(() => util.pronounce(wordContainer.text()));
 
   finishButton.on('click', () => callback(wordGroups));
 

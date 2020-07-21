@@ -13,6 +13,8 @@
 
 .translationPopup .word {
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
 .translationPopup .wordInput {
@@ -22,16 +24,16 @@
   border: none;
   padding: 5px;
   padding-right: 24px;
-  padding-left: 0;
+  padding-left: 28px;
   box-sizing: border-box;
-  width: 100%;
+  width: 90%;
 }
-.translationPopup .word::after {
+.translationPopup .word::before {
   content: '📝';
   width: 16px;
   height: 16px;
   position: absolute;
-  right: 5px;
+  left: 5px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
@@ -43,6 +45,18 @@
 .translationPopup .wordInput:focus {
   outline: 1px solid #000;
   outline-offset: 0;
+}
+
+.pronounceButton {
+  background-color: #368cff !important;
+}
+.pronounceButton::after {
+  content: '▶️';
+  font-size: .7rem;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .translationPopup .translation {
@@ -75,4 +89,5 @@
   color: #fff;
   min-height: auto;
   line-height: normal;
+  border: none;
 }

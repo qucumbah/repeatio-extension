@@ -76,27 +76,45 @@ const renderWord = (word, wordIndex, groupIndex) => {
 
   wordInput.on('input', updateTranslation);
 
-  const removeWordButton = $('<div class="removeWordButton">Remove</div>');
-  removeWordButton.click(() => {
-    util.showPopup(
-      'Are you sure you want to remove word "' + word + '"?',
-      () => removeWord(groupIndex, wordIndex)
-    );
-  });
+  const synthesizeButton = $(
+    `<div class="repeatio__smallButton pronounceButton" title="Pronounce">
+    </div>`
+  );
+  synthesizeButton.click(() => util.pronounce(word));
+
   const markAsLearnedButton = $(
-    '<div class="markAsLearnedButton">Mark as learned</div>'
+    `<div
+      class="repeatio__smallButton markAsLearnedButton"
+      title="Mark word as learned"
+    >
+    </div>`
   );
   markAsLearnedButton.click(() => {
     util.showPopup(
-      'Are you sure you want to mark word "' + word + '" as learned?',
+      `Are you sure you want to mark word "${word}" as learned?`,
       () => markWordAsLearned(groupIndex, wordIndex)
     );
   });
 
+  const removeWordButton = $(
+    `<div class="repeatio__smallButton removeWordButton" title="Remove word">
+    </div>`
+  );
+  removeWordButton.click(() => {
+    util.showPopup(
+      `Are you sure you want to remove word "${word}"?`,
+      () => removeWord(groupIndex, wordIndex)
+    );
+  });
+
+  const smallButtonsContainer = $('<div class="smallButtonsContainer"></div>');
+  smallButtonsContainer.append(synthesizeButton);
+  smallButtonsContainer.append(markAsLearnedButton);
+  smallButtonsContainer.append(removeWordButton);
+
   const wordControls = $('<div class="wordControls"></div>');
   wordControls.append(wordInput);
-  wordControls.append(markAsLearnedButton);
-  wordControls.append(removeWordButton);
+  wordControls.append(smallButtonsContainer);
 
   wordContainer.append(wordControls);
   wordContainer.append(translationContainer);
