@@ -1,6 +1,6 @@
 'use strict';
 
-const add = event => {
+const add = (event) => {
   chrome.storage.sync.get(['wordGroups'], ({ wordGroups }) => {
     wordGroups[0].push(event.selectionText);
     chrome.storage.sync.set({ wordGroups });
@@ -15,7 +15,7 @@ const getDefaultWordGroups = () => {
   return groups;
 };
 
-chrome.runtime.onInstalled.addListener(function() {
+chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.removeAll();
   chrome.contextMenus.create({
     id: 'repeatioContextMenu',
