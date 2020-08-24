@@ -19,7 +19,10 @@
   },
   "content_scripts": [{
     "matches": ["*://*/*"],
-    "exclude_matches": ["*://qucumbah.github.io/repeatio-pwa/*"],
+    "exclude_matches": [
+      "*://qucumbah.github.io/repeatio-pwa/*",
+      "*://127.0.0.1/*"
+    ],
     "js": [
       "/jquery-3.4.1.min.js",
       "/util.js",
@@ -29,6 +32,16 @@
     "css": [
       "/smallButton.css",
       "/translationPopup/style.css"
+    ]
+  }, {
+    "matches": [
+      "*://qucumbah.github.io/repeatio-pwa/*",
+      "*://127.0.0.1/*"
+    ],
+    "js": [
+      "/jquery-3.4.1.min.js",
+      "/util.js",
+      "/repeatioPwaIntegration/script.js"
     ]
   }],
   "manifest_version": 2
