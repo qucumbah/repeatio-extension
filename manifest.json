@@ -19,6 +19,7 @@
   },
   "content_scripts": [{
     "matches": ["*://*/*"],
+    "exclude_matches": ["*://qucumbah.github.io/repeatio-pwa/*"],
     "js": [
       "/jquery-3.4.1.min.js",
       "/util.js",
